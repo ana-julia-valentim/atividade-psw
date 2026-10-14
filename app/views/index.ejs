@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Contato</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Contato</h1>
+
+        <% if (erros && erros.length > 0) { %>
+            <div class="erro" role="alert">
+                <ul>
+                    <% erros.forEach(erro => { %>
+                        <li><%= erro.msg %></li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+
+        <% if (sucesso) { %>
+            <p class="sucesso" role="status"><%= sucesso %></p>
+        <% } %>
+
+        <form action="/enviar" method="POST">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text"
+                   placeholder="Seu nome" maxlength="100" required>
+
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email"
+                   placeholder="seu@email.com" required>
+
+            <label for="telefone">Telefone</label>
+            <input id="telefone" name="telefone" type="tel"
+                   placeholder="(00) 00000-0000" maxlength="25" required>
+
+            <label for="assunto">Assunto</label>
+            <input id="assunto" name="assunto" type="text"
+                   placeholder="Assunto da mensagem" maxlength="150" required>
+
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem"
+                      placeholder="Escreva sua mensagem..." maxlength="5000"
+                      required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
+</body>
+</html>
